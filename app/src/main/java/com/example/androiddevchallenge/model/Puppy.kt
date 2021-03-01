@@ -22,8 +22,7 @@ data class Puppy(
     val gender: Gender = Gender.Unknown,
     val description: String = "",
     val size: Size = Size.Medium,
-    val thumbnail: Int = 0,
-    val images: List<Int> = emptyList()
+    val thumbnail: Int = 0
 )
 
 sealed class Age(val text: String) {
