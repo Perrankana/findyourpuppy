@@ -16,6 +16,7 @@
 package com.example.androiddevchallenge.ui.puppy
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -40,18 +41,17 @@ import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.theme.typography
 
 @Composable
-fun PuppyDetailCard(puppy: Puppy) {
+fun PuppyDetailCard(puppy: Puppy, modifier: Modifier = Modifier) {
     ConstraintLayout(
-        modifier = Modifier.verticalScroll(rememberScrollState())
+        modifier = modifier.verticalScroll(rememberScrollState())
     ) {
-        val (image, title, description, gender, age) = createRefs()
+        val (image, title, description, gender, age, spacer) = createRefs()
         Image(
             painter = painterResource(puppy.thumbnail),
             contentDescription = puppy.name,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(320.dp)
-                .padding(bottom = 4.dp)
                 .constrainAs(image) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
@@ -63,7 +63,7 @@ fun PuppyDetailCard(puppy: Puppy) {
             modifier = Modifier
                 .size(48.dp)
                 .constrainAs(gender) {
-                    bottom.linkTo(image.bottom, margin = (-16).dp)
+                    bottom.linkTo(image.bottom, margin = (-20).dp)
                     end.linkTo(image.end, margin = 12.dp)
                 }
         )
@@ -77,7 +77,8 @@ fun PuppyDetailCard(puppy: Puppy) {
             color = MaterialTheme.colors.primary
         )
         Text(
-            text = "${puppy.age.text} - ${puppy.size.text} - ${puppy.breed}", style = typography.h6,
+            text = "${puppy.age.text} - ${puppy.size.text} - ${puppy.breed}",
+            style = typography.h6,
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
                 .constrainAs(age) {
@@ -92,6 +93,13 @@ fun PuppyDetailCard(puppy: Puppy) {
                     top.linkTo(age.bottom)
                 }
         )
+        Spacer(
+            modifier = Modifier
+                .height(52.dp)
+                .constrainAs(spacer) {
+                    top.linkTo(description.bottom)
+                }
+        )
     }
 }
 
@@ -100,6 +108,7 @@ private fun dummyPuppyListCard() {
     Surface(color = MaterialTheme.colors.background) {
         PuppyDetailCard(
             puppy = Puppy(
+                id = 0,
                 name = "Browny",
                 description = "Handsome CHIP is a 3 year old male coonhound. Small and compact at 40 lbs. He’s so smart and sweet. He’s a “working dog” and loves to sniff!. Chip can be a bit on the nervous side and can get a little hyper at times. He would benefit from training and someone with breed experience would be a definite plus for him! Chip is housebroken.\n",
                 breed = "Coonhound",
@@ -113,7 +122,7 @@ private fun dummyPuppyListCard() {
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable
-fun LightPuppyPreview() {
+fun LightPuppyCardPreview() {
     MyTheme {
         dummyPuppyListCard()
     }
@@ -121,7 +130,7 @@ fun LightPuppyPreview() {
 
 @Preview("Dark Theme", widthDp = 360, heightDp = 640)
 @Composable
-fun DarkPuppyPreview() {
+fun DarkPuppyCardPreview() {
     MyTheme(darkTheme = true) {
         dummyPuppyListCard()
     }

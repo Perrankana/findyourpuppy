@@ -22,6 +22,7 @@ import com.example.androiddevchallenge.model.Size
 
 val puppies = listOf(
     Puppy(
+        id = 0,
         name = "Chip",
         age = Age.Adult,
         thumbnail = R.drawable.chip_small,
@@ -31,6 +32,7 @@ val puppies = listOf(
         description = "Handsome CHIP is a 3 year old male coonhound. Small and compact at 40 lbs. He’s so smart and sweet. He’s a “working dog” and loves to sniff!. Chip can be a bit on the nervous side and can get a little hyper at times. He would benefit from training and someone with breed experience would be a definite plus for him! Chip is housebroken.\n",
     ),
     Puppy(
+        id = 1,
         name = "Granny",
         age = Age.Adult,
         thumbnail = R.drawable.granny_small,
@@ -42,6 +44,7 @@ val puppies = listOf(
             "She would be best in a home without young kids or men. She can’t fully get over her fear of men, so we want to set her up for success. Someone who is home a bit to work with her and continue to boost her confidence would be amazing. Your dedication and patience will be rewarded with lots of love."
     ),
     Puppy(
+        id = 2,
         name = "Miss Kitty",
         age = Age.Senior,
         thumbnail = R.drawable.miss_kitty_small,
@@ -51,6 +54,7 @@ val puppies = listOf(
         description = "Miss Kitty is a very sweet, well-behaved, loving senior Italian Greyhound. She is around 9 years old. She came in with her buddy Matt. Matt and Miss Kitty are very bonded, so they MUST BE PLACED TOGETHER AS A PAIR. Please give this pair a chance at a forever home. They are so full of love!"
     ),
     Puppy(
+        id = 3,
         name = "Chip",
         age = Age.Adult,
         thumbnail = R.drawable.chip_small,
