@@ -17,11 +17,14 @@ package com.example.androiddevchallenge.ui.puppy
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -30,10 +33,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.model.Gender
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.theme.typography
 import com.example.androiddevchallenge.viewmodel.PuppyListItem
@@ -41,36 +45,70 @@ import com.example.androiddevchallenge.viewmodel.PuppyListItem
 @Composable
 fun PuppyListCard(puppy: PuppyListItem, onClick: () -> Unit) {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .padding(4.dp)
-            .clickable(onClick = onClick)
+        modifier = Modifier.padding(4.dp)
     ) {
         Card(
-            elevation = 4.dp
+            elevation = 4.dp,
+            modifier = Modifier.clickable(onClick = onClick)
         ) {
-            Column(
-                modifier = Modifier.padding(bottom = 16.dp)
-            ) {
+            ConstraintLayout {
+                val (image, title, description, gender) = createRefs()
                 Image(
                     painter = painterResource(puppy.image),
                     contentDescription = puppy.name,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(160.dp)
-                        .padding(bottom = 4.dp),
+                        .padding(bottom = 4.dp)
+                        .constrainAs(image) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                        },
                     contentScale = ContentScale.Crop
+                )
+                GenderIcon(
+                    gender = puppy.gender,
+                    modifier = Modifier
+                        .size(32.dp)
+                        .constrainAs(gender) {
+                            bottom.linkTo(image.bottom, margin = (-12).dp)
+                            end.linkTo(image.end, margin = 12.dp)
+                        }
                 )
                 Text(
                     text = puppy.name, style = typography.h6,
-                    modifier = Modifier.padding(start = 16.dp),
+                    modifier = Modifier
+                        .padding(start = 16.dp)
+                        .constrainAs(title) {
+                            top.linkTo(image.bottom)
+                        },
                     color = MaterialTheme.colors.primary
                 )
                 Text(
                     text = puppy.description,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(start = 16.dp)
+                    modifier = Modifier
+                        .defaultMinSize(minHeight = 60.dp)
+                        .padding(start = 16.dp, bottom = 16.dp)
+                        .constrainAs(description) {
+                            top.linkTo(title.bottom)
+                        },
+                    maxLines = 2
                 )
+            }
+            Column(
+                modifier = Modifier.padding(bottom = 16.dp)
+            ) {
+
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Column {
+                    }
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.End,
+                        verticalArrangement = Arrangement.Bottom
+                    ) {
+                    }
+                }
             }
         }
     }
@@ -82,8 +120,10 @@ private fun dummyPuppyListCard() {
         puppy = PuppyListItem(
             name = "Browny",
             description = """Adult • Coonhound""",
-            image = R.drawable.chip_small
+            image = R.drawable.granny_small,
+            gender = Gender.Unknown
         ),
+
         onClick = { /*TODO*/ }
     )
 }

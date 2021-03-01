@@ -16,6 +16,7 @@
 package com.example.androiddevchallenge
 
 import com.example.androiddevchallenge.model.Age
+import com.example.androiddevchallenge.model.Gender
 import com.example.androiddevchallenge.model.Puppy
 
 val puppies = listOf(
@@ -24,27 +25,31 @@ val puppies = listOf(
         shortDescription = "It's a sassy cat",
         age = Age.Adult,
         thumbnail = R.drawable.chip_small,
-        breed = "Coonhound"
+        breed = "Coonhound",
+        gender = Gender.Male
     ),
     Puppy(
         name = "Granny",
         shortDescription = "It's a sassy cat",
         age = Age.Adult,
         thumbnail = R.drawable.granny_small,
-        breed = "Pekingese & Pug Mix"
+        breed = "Pekingese & Pug Mix",
+        gender = Gender.Female
     ),
     Puppy(
         name = "Miss Kitty",
         shortDescription = "It's a sassy cat",
         age = Age.Senior,
         thumbnail = R.drawable.miss_kitty_small,
-        breed = "Italian Greyhound"
+        breed = "Italian Greyhound",
+        gender = Gender.Female
     ),
     Puppy(
         name = "Chip",
         shortDescription = "It's a sassy cat",
         age = Age.Adult,
         thumbnail = R.drawable.chip_small,
-        breed = "Coonhound"
+        breed = "Coonhound",
+        gender = Gender.Male
     )
 )
