@@ -28,6 +28,7 @@ import com.example.androiddevchallenge.puppies
 import com.example.androiddevchallenge.ui.Destinations.PuppyDetail
 import com.example.androiddevchallenge.ui.Destinations.PuppyDetailArgs.PuppyId
 import com.example.androiddevchallenge.ui.grid.PuppyGrid
+import com.example.androiddevchallenge.ui.puppy.PuppyDetailCard
 import com.example.androiddevchallenge.viewmodel.toListItem
 
 @Composable
@@ -44,7 +45,11 @@ fun MyApp() {
             composable(
                 "$PuppyDetail/{$PuppyId}",
                 arguments = listOf(navArgument(PuppyId) { type = NavType.IntType })
-            ) {}
+            ) { backStackEntry ->
+                PuppyDetailCard(
+                    puppy = puppies[backStackEntry.arguments?.getInt(PuppyId) ?: 0]
+                )
+            }
         }
     }
 }

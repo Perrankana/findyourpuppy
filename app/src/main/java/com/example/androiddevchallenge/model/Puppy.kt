@@ -17,7 +17,6 @@ package com.example.androiddevchallenge.model
 
 data class Puppy(
     val name: String,
-    val shortDescription: String,
     val age: Age,
     val breed: String = "Unknown",
     val gender: Gender = Gender.Unknown,
@@ -34,11 +33,11 @@ sealed class Age(val text: String) {
     object Senior : Age("Senior")
 }
 
-sealed class Size {
-    object Medium : Size()
-    object Small : Size()
-    object Tiny : Size()
-    object Large : Size()
+sealed class Size(val text: String) {
+    object Medium : Size("Medium")
+    object Small : Size("Small")
+    object Tiny : Size("Tiny")
+    object Large : Size("Large")
 }
 
 sealed class Gender {
