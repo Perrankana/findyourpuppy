@@ -17,8 +17,6 @@ package com.example.androiddevchallenge.ui.puppy
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,7 +27,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -94,21 +91,6 @@ fun PuppyListCard(puppy: PuppyListItem, onClick: () -> Unit) {
                         },
                     maxLines = 2
                 )
-            }
-            Column(
-                modifier = Modifier.padding(bottom = 16.dp)
-            ) {
-
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    Column {
-                    }
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.End,
-                        verticalArrangement = Arrangement.Bottom
-                    ) {
-                    }
-                }
             }
         }
     }
