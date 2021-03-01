@@ -86,7 +86,7 @@ fun PuppyDetailCard(puppy: Puppy, modifier: Modifier = Modifier) {
                 }
         )
         Text(
-            text = puppy.description + puppy.description,
+            text = puppy.description,
             modifier = Modifier
                 .padding(start = 16.dp, bottom = 16.dp, end = 16.dp)
                 .constrainAs(description) {
