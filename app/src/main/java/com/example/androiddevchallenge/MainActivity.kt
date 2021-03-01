@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
-        PuppyGrid(puppies = puppies.map {it.toListItem()})
+        PuppyGrid(puppies = puppies.map { it.toListItem() })
     }
 }
 
